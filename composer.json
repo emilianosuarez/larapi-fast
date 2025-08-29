@@ -1,5 +1,5 @@
 {
-  "name": "versoo/larapi-fast",
+  "name": "emilianosuarez/larapi-fast",
   "description": "Package to fast generate Resources in Larapi distribution. Very small, very simple but works.",
   "require": {
     "php": "^8.4",
