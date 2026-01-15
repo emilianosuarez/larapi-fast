@@ -23,11 +23,21 @@ class ControllerMakeCommand extends LarapiFastGeneratorCommand
 
     protected function replaceNamespace(&$stub, $name)
     {
-        $stub = str_replace(
-            ['DummyServiceName', 'DummyRequest', 'dummyname'],
-            [$this->getServiceName(), $this->getRequestName(), $this->getModelName()],
-            $stub
-        );
+        $search = [
+            'DummyServiceName',
+            'DummyRequest',
+            'dummyname',
+            'DummyModelClass',
+            'Dummy',
+        ];
+        $replace = [
+            $this->getServiceName(),
+            $this->getRequestName(),
+            $this->getModelName(),
+            $this->getModel(),
+            $this->getModel(),
+        ];
+        $stub = str_replace($search, $replace, $stub);
 
         return parent::replaceNamespace($stub, $name);
     }
