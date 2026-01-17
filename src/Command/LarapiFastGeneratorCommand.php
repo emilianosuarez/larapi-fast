@@ -61,7 +61,15 @@ abstract class LarapiFastGeneratorCommand extends GeneratorCommand
     protected function replaceNamespace(&$stub, $name)
     {
         $stub = str_replace(
-            ['BaseModelsNamespace', 'BaseEventsNamespace', 'BaseRepositoriesNamespace', 'BaseExceptionsNamespace', 'BaseServicesNamespace', 'BaseRequestsNamespace'],
+            [
+                'BaseModelsNamespace',
+                'BaseEventsNamespace',
+                'BaseRepositoriesNamespace',
+                'BaseExceptionsNamespace',
+                'BaseServicesNamespace',
+                'BaseRequestsNamespace',
+                'BaseControllersNamespace',
+            ],
             [
                 $this->getNamespace($name, 'Model'),
                 $this->getNamespace($name, 'Event'),
@@ -69,6 +77,7 @@ abstract class LarapiFastGeneratorCommand extends GeneratorCommand
                 $this->getNamespace($name, 'Exception'),
                 $this->getNamespace($name, 'Service'),
                 $this->getNamespace($name, 'Request'),
+                $this->getNamespace($name, 'Controller'),
             ],
             $stub
         );

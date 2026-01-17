@@ -4,6 +4,7 @@ namespace Versoo\LarapiFast\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Support\Str;
 use function array_merge;
 
 class ExceptionMakeCommand extends LarapiFastGeneratorCommand {
@@ -36,5 +37,15 @@ class ExceptionMakeCommand extends LarapiFastGeneratorCommand {
 		return [
 			[ 'force', null, InputOption::VALUE_NONE, 'Force to create exception - overwrite if exists' ],
 		];
+	}
+
+	protected function replaceClass($stub, $name)
+	{
+		$stub = parent::replaceClass($stub, $name);
+
+		$class = class_basename($name);
+		$entity = Str::of($class)->replaceLast('NotFoundException', '')->lower();
+
+		return str_replace('dummy', $entity, $stub);
 	}
 }

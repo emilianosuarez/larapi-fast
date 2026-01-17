@@ -27,15 +27,11 @@ class ControllerMakeCommand extends LarapiFastGeneratorCommand
             'DummyServiceName',
             'DummyRequest',
             'dummyname',
-            'DummyModelClass',
-            'Dummy',
         ];
         $replace = [
             $this->getServiceName(),
             $this->getRequestName(),
             $this->getModelName(),
-            $this->getModel(),
-            $this->getModel(),
         ];
         $stub = str_replace($search, $replace, $stub);
 
@@ -107,5 +103,16 @@ class ControllerMakeCommand extends LarapiFastGeneratorCommand
 
             ['force', null, InputOption::VALUE_NONE, 'Force to create service - overwrite if exists'],
         ];
+    }
+
+    protected function replaceClass($stub, $name)
+    {
+        $stub = parent::replaceClass($stub, $name);
+
+        return str_replace(
+            'Dummy',
+            class_basename($this->getModel()),
+            $stub
+        );
     }
 }
